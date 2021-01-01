@@ -1,0 +1,26 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/home}">
+
+<div layout:fragment="content">
+    <div class="breadcrumb">
+        <div class="container">
+            <a class="breadcrumb-item" href="index.html">Home</a>
+            <span class="breadcrumb-item active">About</span>
+        </div>
+    </div>
+    <section class="static about-sec">
+        <div class="container">
+            <h1>About Me</h1>
+            <div class="img-sec">
+                <img src="img/about-img.jpg" alt="about">
+                <p>1</p>
+                <p>2</p>
+            </div>
+            <p>Hi!, My name is Ananth Shanmugam. A seasoned senior java developer with 12 years experience developing java based applications</p>
+        </div>
+    </section>
+</div>
+</html>

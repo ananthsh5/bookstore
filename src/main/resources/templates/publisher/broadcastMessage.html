@@ -1,0 +1,16 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/user}">
+<div class="container" layout:fragment="content">
+    <h1>Broadcast New Message</h1>
+    <div >
+
+            <form action="#" th:action="@{/publisher/broadcastmessage} " method="post">
+                <textarea th:field="*{review}" class="form-control"></textarea><br/>
+                <input type="submit" value="Submit" class="btn btn-success"/>
+            </form>
+
+    </div>
+</div>
+</html>

@@ -1,0 +1,42 @@
+<ul th:fragment="publisher"
+     th:remove="tag"
+     xmlns:th="http://www.thymeleaf.org/"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/publisher/orders}">
+			<i class="fas fa-fw fa-barcode"></i>
+			<span>Orders</span></a>
+	</li>
+	
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/account/profile}">
+			<i class="fas fa-fw fa-user-cog"></i>
+			<span>Profile</span></a>
+	</li>
+	
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/publisher/store}">
+			<i class="fas fa-fw fa-store-alt"></i>
+			<span>Store Info</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/publisher/book}">
+			<i class="fas fa-fw fa-boxes"></i>
+			<span>Book</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/publisher/subscribers}">
+			<i class="fas fa-fw fa-user-plus"></i>
+			<span>Subscribers</span></a>
+	</li>
+	
+</ul>

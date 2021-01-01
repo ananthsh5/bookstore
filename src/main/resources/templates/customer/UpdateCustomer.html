@@ -1,0 +1,29 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/user}">
+<div class="container" layout:fragment="content">
+
+    <div >
+        <form th:object="${customer}" action="#" th:action="@{/customer/profile/update}" th:method="post">
+            <label>First Name: </label>
+            <input type="text" th:field="*{userDTO.firstName}"/><br/>
+            <label>Last Name: </label>
+            <input type="text" th:field="*{userDTO.lastName}"/><br/>
+            <label>Phone: </label>
+            <input type="text" th:field="*{userDTO.phone}"/><br/>
+            <label>Address: </label>
+            <input type="text" th:field="*{userDTO.address}"/><br/>
+            <div style="display:none">
+                <input th:field="*{id}"/><br/>
+                <input th:field="*{userDTO.id}"/><br/>
+                <input th:field="*{userDTO.email}"/><br/>
+                <input type="text" th:field="*{userDTO.password}"/><br/>
+                <input type="text" th:field="*{userDTO.confirmPassword}"/><br/>
+                <input type="text" th:field="*{userDTO.role}"/><br/>
+            </div>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</div>
+</html>

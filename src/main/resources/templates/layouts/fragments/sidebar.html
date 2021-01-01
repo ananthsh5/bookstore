@@ -1,0 +1,34 @@
+<ul class="sidebar navbar-nav align-items-center"
+    th:fragment="sidebar"
+    sec:authorize="isAuthenticated()"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+    xmlns:th="http://www.thymeleaf.org/">
+	
+	<!-- user messages -->
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/account/message}">
+			<i class="fas fa-fw fa-mail-bulk"></i>
+			<span>Message</span>
+		</a>
+	</li>
+	
+	<li sec:authorize="hasAuthority('ADMIN')"
+	     th:remove="tag"
+	     th:replace="layouts/nav/admin :: admin">
+		<!-- admin nav -->
+	</li>
+	
+	<li sec:authorize="hasAuthority('CUSTOMER')"
+	     th:remove="tag"
+	     th:replace="layouts/nav/customer :: customer">
+		<!-- customer nav -->
+	</li>
+	
+	<li sec:authorize="hasAuthority('PUBLISHER')"
+	     th:remove="tag"
+	     th:replace="layouts/nav/publisher :: publisher">
+		<!-- publisher nav -->
+	</li>
+
+</ul>

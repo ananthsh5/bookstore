@@ -1,0 +1,86 @@
+<nav class=" navbar navbar-expand-lg" th:fragment="header"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org/">
+
+
+	<div class="main-menu">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" href="/"><img src="/img/logo.png"
+					alt="logo"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="navbar-item" style="font-size: 1.6em !important">
+						<a th:href="@{/about}"  th:text="#{button.about}" class="nav-link">About</a></li>
+						<li class="navbar-item" style="font-size: 1.6em !important">
+						<a th:href="@{/faq}" th:text="#{button.faq}" class="nav-link">FAQ</a></li>
+
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">
+								<i class="fas fa-2x text-dark fa-user fa-fw"></i>
+						</a>
+							<ul class="dropdown-menu">
+								<li class="nav-item" sec:authorize="!isAuthenticated()">
+									<a sec:authorize="!isAuthenticated()" class="dropdown-item" th:href="@{/account/login}"
+										th:text="#{button.login}">Login</a>
+								</li>
+								<!-- login -->
+
+								<li sec:authorize="isAuthenticated()">
+
+									<div class="dropdown-item">
+										<div class="font-weight-bold" th:text="${userDTO.firstName} +' ' +${userDTO.LastName}"></div>
+										<div class="text-muted" sec:authentication="name"></div>
+									</div>
+									<div class="dropdown-divider"></div>
+
+
+									<a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')"
+										th:href="@{/admin/dashboard}"> <span
+										class="fa fas fa-fw fa-tachometer-alt"></span> Dashboard
+									</a> <a class="dropdown-item"
+										sec:authorize="hasAuthority('PUBLISHER')"
+										th:href="@{/publisher/orders}"> <span
+										class="fa fas fa-fw fa-tachometer-alt"></span> Dashboard 
+									</a> <a class="dropdown-item"
+										sec:authorize="hasAuthority('CUSTOMER')"
+										th:href="@{/customer/orders}"> <span
+										class="fa fas fa-fw fa-tachometer-alt"></span> Dashboard 
+									</a>
+
+									<!-- logout -->
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item text-danger" href="#"
+										data-toggle="modal" data-target="#logoutModal"> <span
+										class="fa fa-sign-out-alt"></span> <span
+										th:text="#{button.logout}">Logout</span>
+									</a>
+									<!-- logout -->
+
+								</li>
+							</ul></li>
+					</ul>
+					<div class="cart my-2 my-lg-0">
+						<a th:href="@{/customer/cart}" id="shoppingCartDropdown"
+							aria-expanded="false"> <i class="fa fa-2x fa-shopping-cart"></i>
+							<span class="badge badge-danger m-0" id="cart-item-count"></span>
+						</a>
+					</div>
+					<form class="form-inline my-2 my-lg-0" style="display:none">
+						<input class="form-control mr-sm-2" type="search"
+							placeholder="Search book here..." aria-label="Search"> <span
+							class="fa fa-search"></span>
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- Navbar -->
+
+</nav>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/home}">
+
+<div layout:fragment="content">
+ <div class="row">
+        <div class="col-lg-2 sidebar_box">
+                        <h2 class="my-3" style="color:#b12213">Categories</h2>
+            				<div class="list-group w3-light-grey">
+							
+								<a href="#" th:href="@{/category?id=} + ${category.id}" class="list-group-item list-group-item-action"
+									th:each="category : ${categories}" th:text="${category.name}"
+									th:classappend="(${category.id} == ${currentCategoryId}) ? 'active' : ''"></a>
+							</div>
+         </div>
+                
+  <div class="col-lg-9">
+			<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item" th:each="ad : ${promos}"
+                         th:classappend="${adStat.index == 0} ? 'active' : '' ">
+                        <a th:href="'https://' + ${ad.url}">
+                            <img class="d-block img-fluid" th:src="${ad.image}" alt="First slide"
+                                 style="height: 250px; width: 100%; ">
+                        </a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+   <section class="recomended-sec">
+        <div>
+ 
+             <div class="title">
+                <h2>Newly Added Books</h2>
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-4 mb-4" th:each="book : ${books}">
+                    <div class="card h-100 item">
+                        <a th:href="@{'/book/' + ${book.id}}">
+                            <img class="card-img-top" th:src="${book.image}" th:alt="${book.name}">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a th:href="@{'/book/' + ${book.id}}" th:text="${book.name}">Item One</a>
+                            </h4>
+                            <h5 th:text="'$' + ${book.price}"></h5>
+                            <p class="card-text" th:text="${book.description}"></p>
+                        </div>
+                        <div class="card-footer">
+                            <form sec:authorize="isAnonymous() || hasAuthority('CUSTOMER')"
+                                  th:action="@{/book/{id}/cart(id=${book.id})}" method="post" class="m-0 p-0">
+                                <button title="Add to Cart" class="float-right btn btn-outline-light m-0 p-0"
+                                        type="submit">
+                                    <i class="fa fas fa-cart-plus fa-2x text-success"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+   </div>
+   
+   
+    <section class="features-sec">
+        <div class="container">
+            <ul>
+                <li>
+                    <span class="icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                    <h3>SAFE STORE SHOPPING</h3>
+                    <h5>Safe Store Shopping Guarantee</h5>
+                    <h6></h6>
+                </li>
+                <li>
+                    <span class="icon return"><i class="fa fa-reply-all" aria-hidden="true"></i></span>
+                    <h3>30- DAY RETURN</h3>
+                    <h5>Moneyback guarantee</h5>
+                    <h6></h6>
+                </li>
+                <li>
+                    <span class="icon chat"><i class="fa fa-comments" aria-hidden="true"></i></span>
+                    <h3>24/7 SUPPORT</h3>
+                    <h5>online Consultations</h5>
+                    <h6></h6>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="offers-sec" style="background:url(img/offers.jpg)no-repeat;">
+        <div class="cover"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="detail">
+                        <h3>Top 50% OFF on Selected</h3>
+                        <h6>We are now offering some good discount 
+                    on selected books go and shop them</h6>
+                        <span class="icon-point percentage">
+                            <img src="img/precentagae.png" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="detail">
+                        <h3>Shop $ 500 Above and Get Extra!</h3>
+                        <h6>We are now offering some good discount 
+                    on selected books go and shop them</h6>
+                        <span class="icon-point amount"><img src="img/amount.png" alt=""></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</div>
+
+</html>

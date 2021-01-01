@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">BOOK STORE</title>
+	<meta charset="utf-8">
+	<meta name="viewport"
+	      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description"
+	      content="">
+    <meta name="author"
+          content="Ananth Shanmugam">
+	<!-- stylesheet -->
+	<link type="text/css"
+	      rel="stylesheet"
+	      th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<link type="text/css"
+	      rel="stylesheet"
+	      th:href="@{/vendor/fontawesome-free/css/all.min.css}">
+	<link type="text/css"
+	      rel="stylesheet"
+	      th:href="@{/css/styles.css}">
+	      
+	      
+	<link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+</head>
+<body id="page-top">
+	<!-- header -->
+	<nav th:replace="layouts/fragments/header :: header">Home</nav>
+	<!-- header -->
+	<div id="wrapper">
+	<div id="content-wrapper">
+    <div class="container-fluid">
+	<!-- container -->
+	<div layout:fragment="content">Contents</div>
+	<!-- container -->
+	</div>
+	<!-- footer -->
+	<footer th:replace="layouts/fragments/footer :: footer">Copyright @2020</footer>
+	<!-- footer -->
+	
+	<!-- logout -->
+	<div th:replace="layouts/fragments/logout :: logout"></div>
+	<!-- logout -->
+	
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded"
+	   href="#page-top">
+		<i class="fas fa-angle-up"></i>
+	</a>
+	<!-- Scroll to Top Button-->
+</div>
+</div>
+	<!-- javascript -->
+	<div th:replace="layouts/fragments/javascripts :: javascripts" th:remove="tag">javascript section</div>
+</body>
+</html>

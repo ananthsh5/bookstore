@@ -1,0 +1,46 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/user}">
+<div layout:fragment="content">
+
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered"
+               id="grid"
+               style="width:100%;padding:0">
+            <thead>
+            <tr>
+                <th>Store</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="publisher: ${publishers}">
+                    <td th:text="${publisher.name}"></td>
+                    <td th:text="${publisher.userDTO.phone}"></td>
+                    <td th:text="${publisher.userDTO.email}"></td>
+                    <td th:text="${publisher.userDTO.address}"></td>
+                    <td th:text="${publisher.accstatus}"></td>
+                    <td>
+                        <form action="#" th:action="@{/admin/publishers/} + ${publisher.id} + @{/approve}" method="post">
+                            <input type="submit" value="Approve" th:if="${publisher.accstatus.toString() != 'APPROVED'}" class="btn btn-success btn-sm mt-2"/>
+                        </form>
+
+                        <form action="#" th:action="@{/admin/publishers/} + ${publisher.id} + @{/reject}" method="post">
+                            <input type="submit" value="Reject " th:if="${publisher.accstatus.toString() != 'REJECTED'}" class="btn btn-danger btn-sm mt-2"/>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <div class="m-5"></div>
+
+        </div>
+    </div>
+</div>
+</html>

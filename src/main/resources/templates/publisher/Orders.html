@@ -1,0 +1,43 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/user}">
+<div class="container" layout:fragment="content">
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="grid" style="width:100%;padding:0">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Book</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${orderItems}">
+                    <td th:text="${item.orderDTO.customerDTO.userDTO.firstName} + ' ' + ${item.orderDTO.customerDTO.userDTO.lastName}"></td>
+                    <td th:text="${item.bookDTO.name}"></td>
+                    <td>$<span th:text="${item.bookDTO.price}"></span></td>
+                    <td th:text="${item.quantity}"></td>
+                    <td th:text="${item.orderStatus}"></td>
+                    <td class="text-center">
+                        <form action="#" th:action="@{/publisher/orders/} + ${item.id}">
+                            <input title="View Order Detail" type="submit" value="Details" class="btn btn-info btn-sm"/>
+                        </form>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div class="m-5"></div>
+
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,181 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/account}">
+<div class="container"
+     layout:fragment="content">
+	
+	<!-- main content -->
+	<div class="card mx-auto">
+		
+		<div class="card-header pt-3 pb-3">
+			<span class="fa fa-handshake fa-2x text-primary"></span>
+			<span th:text="#{register.publisher.title}"
+			      class="h3">Registration</span>
+		</div>
+		
+		<div class="card-body">
+			<form th:object="${publisherDTO}"
+			      method="post"
+			      th:action="@{/account/publisher-register}">
+				
+				<!-- display errors -->
+				<div th:if="${#fields.hasErrors()}">
+					<div class="alert alert-danger pb-0"
+					     role="alert">
+						<h3>Error!</h3>
+						<ul class="">
+							<li th:each="error : ${#fields.errors('*')}"
+							    th:text="${error}"></li>
+						</ul>
+					</div>
+				</div>
+				<!-- display errors -->
+				
+				<div class="h4 font-italic">Contact Information</div>
+				<hr/>
+				<div class="pb-3"></div>
+				
+				
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="text"
+								       id="firstName"
+								       name="firstName"
+								       class="form-control"
+								       th:placeholder="#{form.firstName}"
+								       th:field="*{userDTO.firstName}"
+								       autofocus="autofocus">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="text"
+								       id="lastName"
+								       name="lastName"
+								       class="form-control"
+								       th:placeholder="#{form.lastName}"
+								       th:field="*{userDTO.lastName}">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="email"
+								       id="email"
+								       name="email"
+								       class="form-control"
+								       th:placeholder="#{form.email}"
+								       th:field="*{userDTO.email}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="text"
+								       name="telephone"
+								       id="telephone"
+								       class="form-control"
+								       th:placeholder="#{form.telephone}"
+								       th:field="*{userDTO.phone}">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="password"
+								       name="password"
+								       id="password"
+								       class="form-control"
+								       th:placeholder="#{form.password}"
+								       th:field="*{userDTO.password}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-label-group">
+								<input type="password"
+								       name="confirmPassword"
+								       id="confirmPassword"
+								       class="form-control"
+								       th:placeholder="#{form.confirmPassword}"
+								       th:field="*{userDTO.confirmPassword}">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label-group">
+						<input type="text"
+						       name="address"
+						       id="address"
+						       class="form-control"
+						       th:placeholder="#{form.address}"
+						       th:field="*{userDTO.address}">
+					</div>
+				</div>
+				
+				<div class="pt-3"></div>
+				<div class="h4 font-italic">Store Information</div>
+				<hr/>
+				<div class="pb-3"></div>
+				
+				<div class="form-group">
+					<div class="form-label-group">
+						<input type="text"
+						       name="name"
+						       id="name"
+						       class="form-control"
+						       th:placeholder="#{form.storeName}"
+						       th:field="*{name}">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label-group">
+						<textarea
+						       th:rows="5"
+						       name="description"
+						       id="description"
+						       class="form-control"
+						       th:field="*{description}"></textarea>
+					</div>
+				</div>
+				
+				<div class="pb-3"></div>
+				
+				<input type="submit"
+				       class="btn btn-primary btn-block btn-lg"
+				       th:value="#{button.register}"
+				       value="Register"/>
+			
+			</form>
+			
+			<div class="text-center align-items-center">
+				<ul class="nav justify-content-center mt-4">
+					<li class="nav-item">
+						<a class="nav-link"
+						   th:href="@{/account/login}"
+						   th:text="#{button.loginPage}">Login Page</a>
+					</li>
+					<li class="nav-item pt-2">
+						<span class="border"></span>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link"
+						   th:href="@{/account/forgot-password}"
+						   th:text="#{button.forgotPassword}">Forgot Password?</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- main content -->
+	
+</div>
+</html>

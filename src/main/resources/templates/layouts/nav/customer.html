@@ -1,0 +1,34 @@
+<ul th:fragment="customer"
+     th:remove="tag"
+     xmlns:th="http://www.thymeleaf.org/"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/customer/orders}">
+			<i class="fas fa-fw fa-barcode"></i>
+			<span>Order History</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/account/profile}">
+			<i class="fas fa-fw fa-user-cog"></i>
+			<span>Profile</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/customer/cart}">
+			<i class="fas fa-fw fa-shopping-cart"></i>
+			<span>BookStore Cart</span></a>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link"
+		   th:href="@{/customer/subscribing}">
+			<i class="fas fa-fw fa-user-plus"></i>
+			<span>Subscribers</span></a>
+	</li>
+
+</ul>

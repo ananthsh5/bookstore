@@ -1,0 +1,35 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layouts/user}">
+<head>
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/cart.js}"></script> 
+</head>
+<div class="container" layout:fragment="content">
+    <h1>Book Store Cart</h1>
+    <div >
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" style="width:100%;padding:0">
+                    <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id='cart-item'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <form action="#" th:action="@{/customer/checkout}">
+            <input type="submit" value="Checkout" class="btn btn-success"/>
+        </form>
+    </div>
+</div>
+</html>

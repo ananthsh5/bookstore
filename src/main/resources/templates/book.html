@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/"
+      layout:decorate="~{layouts/home}">
+
+<div class="container" layout:fragment="content">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <h1 class="my-4" th:text="${publisher.name}">Store Name</h1>
+            <div class="list-group">
+                <img th:src="${publisher.picture}" th:alt="publisher.picture" style="width: 100%;">
+                <span th:text="${publisher.description}"></span>
+                    <input id="publisherId" th:value="${publisher.id}" hidden="hidden">
+                    <button id="subscribeBtn" class="btn btn-success" th:hidden="(${subscribe} > 0) ? 'false' : 'true' "
+                            th:text="(${subscribe} == 1) ? 'Unsubscribe' : 'Subscribe' "></button>
+
+            </div>
+            <div class="list-group">
+                <h2 class="my-3">Related Books</h2>
+
+                <div class="card h-100 mb-3 p-2" th:each="bookDTO,iterStat : ${publisher.bookDTOs}" th:if="${iterStat.index}<3">
+                    <a th:href="@{'/book/' + ${bookDTO.id}}">
+                        <img th:src="${bookDTO.image}" class="img-thumbnail">
+                    </a>
+                    <a th:href="${bookDTO.image}" th:text="${bookDTO.name}"></a>
+                    <span th:text="'$'+${bookDTO.price}"></span>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+            <div class="card mt-4">
+                <img class="card-img-top img-fluid" th:src="${book.image}" th:alt="${book.name}">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="${book.name}"></h3>
+                    <h4>$24.99</h4>
+                    <form sec:authorize="hasAuthority('CUSTOMER') || isAnonymous()"
+                          th:action="@{/book/{id}/cart(id=${book.id})}"
+                          method="post" class="m-0 p-0">
+                        <button title="Add to Cart" class="btn btn-success"
+                                type="submit">
+                            <i class="fa fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </form>
+                    <p class="card-text" th:text="${book.description}"></p>
+
+<!--                    <span class="text-warning" id="rating">&#9733; &#9733; &#9733; &#9733; &#9734;</span>-->
+<!--                    <span th:if="${rating == 0}">No rating</span>-->
+<!--                    <span th:unless="${rating == 0}" th:text="${rating} + ' Stars'"></span>-->
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </div>
+    </div>
+</div>
+
+
+</html>
